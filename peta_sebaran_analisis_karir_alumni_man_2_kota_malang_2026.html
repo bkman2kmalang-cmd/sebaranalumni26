@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD SEBARAN STUDI LANJUT ALUMNI MAN 2 KOTA MALANG ANGKATAN 2026</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            800: '#065F46',
+                            850: '#054E3A',
+                            900: '#043927',
+                            950: '#022C22',
+                        },
+                        gold: {
+                            50: '#FFFBEB',
+                            100: '#FEF3C7',
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                        },
+                        surface: '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #1E293B;
+        }
+
+        /* Flight Path Arc Animation on World SVG */
+        .flight-arc {
+            stroke-dasharray: 6 5;
+            animation: dashFlow 24s linear infinite;
+            transition: stroke-width 0.25s ease, opacity 0.25s ease;
+        }
+        @keyframes dashFlow {
+            to {
+                stroke-dashoffset: -220;
+            }
+        }
+
+        /* SVG Map Node Hover & Pulse */
+        .map-node-group {
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .map-node-group:hover .node-core {
+            stroke: #FFFFFF;
+            stroke-width: 3px;
+            filter: brightness(1.1);
+        }
+        .node-pulse {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: svgPulse 2.4s infinite ease-out;
+        }
+        @keyframes svgPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.65;
+            }
+            100% {
+                transform: scale(2.25);
+                opacity: 0;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-emerald-800 selection:text-white">
+
+    <!-- 1. HEADER RESMI & REAL-TIME STATUS BAR -->
+    <header class="bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-800 text-white shadow-lg sticky top-0 z-40 border-b border-emerald-700/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-3.5">
+                    <!-- Emblem Icon (Inline SVG) -->
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-emerald-950 shadow-md shrink-0">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-gold-400">EduTech & Career Psychology Intelligence</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-950/80 text-emerald-100 border border-emerald-500/40">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                                </span>
+                                LIVE DATA • <span id="live-clock" class="font-mono">--:--:--</span> WIB
+                            </span>
+                        </div>
+                        <h1 class="font-display text-base sm:text-xl lg:text-2xl font-extrabold tracking-tight text-white mt-0.5">
+                            DASHBOARD SEBARAN STUDI LANJUT ALUMNI MAN 2 KOTA MALANG ANGKATAN 2026
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5 self-start lg:self-center">
+                    <button onclick="openUpdateModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-600 hover:bg-gold-500 text-white font-semibold text-xs sm:text-sm transition shadow-sm cursor-pointer">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                        </svg>
+                        <span>Update Data Real-Time</span>
+                    </button>
+                    <a href="#direktori-alumni" class="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm transition border border-white/20">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+                        </svg>
+                        <span>Cari Siswa</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+
+        <!-- 2. KARTU RINGKASAN KPI UTAMA (5 KARTU) -->
+        <section aria-label="Ringkasan KPI Utama">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- KPI 1: Total Diterima -->
+                <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200/90 hover:border-emerald-400 transition relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Total Diterima</span>
+                        <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-800 flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </span>
+                    </div>
+                    <div class="mt-2.5 flex items-baseline gap-1.5">
+                        <span id="kpi-accepted" class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">466</span>
+                        <span class="text-xs font-medium text-slate-500">/ <span id="kpi-total">481</span> Siswa</span>
+                    </div>
+                    <div class="mt-2">
+                        <span id="kpi-rate" class="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-md">
+                            96,88% Keterserapan
+                        </span>
+                    </div>
+                </div>
+
+                <!-- KPI 2: Sebaran Luar Negeri (PTLN) -->
+                <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200/90 hover:border-amber-400 transition relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Sebaran Luar Negeri</span>
+                        <span class="w-8 h-8 rounded-lg bg-amber-50 text-gold-600 flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </span>
+                    </div>
+                    <div class="mt-2.5 flex items-baseline gap-1.5">
+                        <span id="kpi-abroad" class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">12</span>
+                        <span class="text-xs font-medium text-slate-500">Siswa PTLN</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-flex items-center text-xs font-semibold text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-md">
+                            7 Negara • 10 Kampus
+                        </span>
+                    </div>
+                </div>
+
+                <!-- KPI 3: Sebaran Dalam Negeri -->
+                <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200/90 hover:border-teal-400 transition relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Sebaran Dalam Negeri</span>
+                        <span class="w-8 h-8 rounded-lg bg-teal-50 text-teal-800 flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg>
+                        </span>
+                    </div>
+                    <div class="mt-2.5 flex items-baseline gap-1.5">
+                        <span id="kpi-domestic" class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">454</span>
+                        <span class="text-xs font-medium text-slate-500">Siswa PTDN</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-flex items-center text-xs font-semibold text-teal-800 bg-teal-50 px-2.5 py-0.5 rounded-md">
+                            42 Kampus • 13 Kota
+                        </span>
+                    </div>
+                </div>
+
+                <!-- KPI 4: Beasiswa & Jalur Prestasi -->
+                <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200/90 hover:border-yellow-400 transition relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Beasiswa & Prestasi</span>
+                        <span class="w-8 h-8 rounded-lg bg-yellow-50 text-yellow-700 flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                        </span>
+                    </div>
+                    <div class="mt-2.5 flex items-baseline gap-1.5">
+                        <span id="kpi-scholarship" class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">47</span>
+                        <span class="text-xs font-medium text-slate-500">Siswa Unggulan</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="inline-flex items-center text-[11px] font-semibold text-yellow-900 bg-yellow-100/80 px-2 py-0.5 rounded-md">
+                            27 Beasiswa + 20 Golden Ticket
+                        </span>
+                    </div>
+                </div>
+
+                <!-- KPI 5: Status Lainnya (Gap Year & Menunggu) -->
+                <div class="bg-white rounded-2xl p-5 shadow-xs border border-slate-200/90 hover:border-slate-400 transition relative overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Status Lainnya</span>
+                        <span class="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </span>
+                    </div>
+                    <div class="mt-2.5 flex items-baseline gap-2">
+                        <span id="kpi-other-total" class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">15</span>
+                        <span class="text-xs font-medium text-slate-500">Siswa (3,12%)</span>
+                    </div>
+                    <div class="mt-2 flex flex-wrap gap-1">
+                        <span id="kpi-gap-badge" class="text-[11px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">12 Gap Year</span>
+                        <span id="kpi-pending-badge" class="text-[11px] font-semibold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">3 Menunggu</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. VISUALISASI PETA DUNIA & NUSANTARA MANDIRI (100% SELF-CONTAINED SVG) -->
+        <section class="bg-white rounded-2xl shadow-xs border border-slate-200/90 overflow-hidden">
+            <!-- Header & 3 Tab Toggles -->
+            <div class="p-5 sm:p-6 border-b border-slate-100 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4 bg-gradient-to-r from-slate-50 to-white">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-800"></span>
+                        <h2 class="font-display text-lg sm:text-xl font-bold text-slate-900">Peta Sebaran Geospasial & Klaster Kampus Alumni</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1">
+                        Klik titik penanda pada Peta Dunia, Peta Indonesia, atau Kartu Wilayah untuk meninjau rincian kampus dan nama lengkap alumni.
+                    </p>
+                </div>
+
+                <!-- 3 Tab Toggles -->
+                <div class="inline-flex flex-wrap p-1 rounded-xl bg-slate-100 border border-slate-200/80 self-start xl:self-center gap-1">
+                    <button onclick="switchGeoTab('world')" id="tab-geo-world" class="geo-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 bg-emerald-800 text-white shadow-xs cursor-pointer">
+                        <span>Peta Dunia (PTLN & Hub Indonesia)</span>
+                    </button>
+                    <button onclick="switchGeoTab('indonesia')" id="tab-geo-indonesia" class="geo-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 hover:text-slate-900 cursor-pointer">
+                        <span>Peta Sebaran Kota di Indonesia (PTDN)</span>
+                    </button>
+                    <button onclick="switchGeoTab('cards')" id="tab-geo-cards" class="geo-tab-btn px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-1.5 text-slate-600 hover:text-slate-900 cursor-pointer">
+                        <span>Tampilan Kartu Wilayah & Klaster Kampus</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Geo Display + Right Detail Drawer -->
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+                <!-- Left 8 Columns: Interactive SVG Maps or Regional Cards -->
+                <div class="lg:col-span-8 relative bg-[#EFF4F8] min-h-[440px] sm:min-h-[520px] flex flex-col justify-between">
+                    
+                    <!-- VIEW A: EMBEDDED SVG WORLD MAP (PTLN & HUB MALANG) -->
+                    <div id="view-geo-world" class="w-full h-full flex flex-col justify-between p-3 sm:p-5">
+                        <div class="relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-b from-[#E8F0F6] to-[#F3F7FA] border border-slate-200/80 shadow-inner">
+                            <svg id="world-svg-map" viewBox="0 0 1000 500" class="w-full h-auto max-h-[450px] select-none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <!-- Gradien Benua Elegan -->
+                                    <linearGradient id="continentGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#D7E2EC"/>
+                                        <stop offset="100%" stop-color="#C6D5E3"/>
+                                    </linearGradient>
+                                    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0F172A" flood-opacity="0.22"/>
+                                    </filter>
+                                </defs>
+
+                                <!-- Garis Lintang & Bujur Halus (Graticules) -->
+                                <g stroke="#CBD5E1" stroke-width="0.7" stroke-dasharray="3 3" opacity="0.7">
+                                    <line x1="0" y1="100" x2="1000" y2="100"/>
+                                    <line x1="0" y1="180" x2="1000" y2="180"/>
+                                    <!-- Garis Khatulistiwa (Equator) -->
+                                    <line x1="0" y1="275" x2="1000" y2="275" stroke="#94A3B8" stroke-width="1" stroke-dasharray="6 4"/>
+                                    <line x1="0" y1="365" x2="1000" y2="365"/>
+                                    <line x1="0" y1="440" x2="1000" y2="440"/>
+                                    <line x1="166" y1="0" x2="166" y2="500"/>
+                                    <line x1="333" y1="0" x2="333" y2="500"/>
+                                    <line x1="500" y1="0" x2="500" y2="500"/>
+                                    <line x1="666" y1="0" x2="666" y2="500"/>
+                                    <line x1="833" y1="0" x2="833" y2="500"/>
+                                </g>
+                                <text x="14" y="270" font-size="9" fill="#64748B" font-family="Inter, sans-serif" font-weight="600">KHATULISTIWA (0°)</text>
+
+                                <!-- Siluet Benua Dunia yang Rapi & Proporsional -->
+                                <g fill="url(#continentGrad)" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round">
+                                    <!-- Amerika Utara & Tengah (Kanada, USA, Meksiko) -->
+                                    <path d="M 75,75 L 145,55 L 235,55 L 295,85 L 275,135 L 245,165 L 210,195 L 185,220 L 205,245 L 180,255 L 150,220 L 125,180 L 110,130 L 65,105 Z"/>
+                                    <!-- Greenland -->
+                                    <path d="M 315,35 L 385,30 L 395,70 L 345,95 L 315,75 Z"/>
+                                    <!-- Amerika Selatan -->
+                                    <path d="M 215,265 L 265,265 L 310,305 L 300,365 L 260,435 L 235,455 L 225,395 L 205,325 Z"/>
+                                    <!-- Eropa -->
+                                    <path d="M 445,135 L 465,90 L 515,65 L 565,70 L 575,115 L 555,145 L 515,155 L 475,155 L 450,150 Z"/>
+                                    <!-- Afrika (Termasuk Maroko & Mesir) -->
+                                    <path d="M 445,165 L 515,162 L 565,175 L 595,225 L 575,295 L 545,365 L 515,375 L 495,310 L 485,255 L 438,235 L 432,195 Z"/>
+                                    <!-- Timur Tengah & Asia Daratan (Rusia, Tiongkok, India, Korea, Asia Tenggara) -->
+                                    <path d="M 565,115 L 610,65 L 745,55 L 885,75 L 915,115 L 865,145 L 845,180 L 820,175 L 795,215 L 755,235 L 735,265 L 710,235 L 675,255 L 645,215 L 605,215 L 570,175 Z"/>
+                                    <!-- Jepang -->
+                                    <path d="M 852,148 L 866,142 L 870,168 L 854,176 Z"/>
+                                    <!-- Kepulauan Indonesia & Malaysia -->
+                                    <path d="M 725,272 L 752,292 L 745,302 L 718,282 Z"/> <!-- Sumatera -->
+                                    <path d="M 754,304 L 792,308 L 792,315 L 754,311 Z"/> <!-- Jawa & Bali -->
+                                    <path d="M 768,265 L 802,262 L 805,288 L 770,290 Z"/> <!-- Kalimantan -->
+                                    <path d="M 812,272 L 828,270 L 826,294 L 812,292 Z"/> <!-- Sulawesi -->
+                                    <path d="M 845,285 L 892,292 L 892,312 L 845,304 Z"/> <!-- Papua -->
+                                    <!-- Australia & Selandia Baru -->
+                                    <path d="M 785,345 L 855,335 L 895,365 L 885,415 L 835,425 L 785,395 Z"/>
+                                    <path d="M 915,425 L 932,415 L 936,435 L 918,445 Z"/>
+                                </g>
+
+                                <!-- Rute Penerbangan Melengkung (Flight-Path Arcs) dari Malang (772, 309) ke 7 Negara PTLN -->
+                                <g fill="none" stroke="#D97706" stroke-width="2" opacity="0.85">
+                                    <!-- Malang ke Singapura (746, 282) -->
+                                    <path class="flight-arc" d="M 772,309 Q 752,295 746,282"/>
+                                    <!-- Malang ke Malaysia (740, 272) -->
+                                    <path class="flight-arc" d="M 772,309 Q 748,285 740,272"/>
+                                    <!-- Malang ke Korea Selatan (832, 158) -->
+                                    <path class="flight-arc" d="M 772,309 Q 825,230 832,158"/>
+                                    <!-- Malang ke Australia (855, 392) -->
+                                    <path class="flight-arc" d="M 772,309 Q 825,340 855,392"/>
+                                    <!-- Malang ke Mesir (558, 182) -->
+                                    <path class="flight-arc" d="M 772,309 Q 665,195 558,182"/>
+                                    <!-- Malang ke Maroko (458, 168) -->
+                                    <path class="flight-arc" d="M 772,309 Q 605,155 458,168"/>
+                                    <!-- Malang ke Kanada (252, 128) -->
+                                    <path class="flight-arc" d="M 772,309 Q 515,45 252,128"/>
+                                </g>
+
+                                <!-- Layer Titik Interaktif Peta Dunia (Di-render via JS agar sinkron real-time) -->
+                                <g id="world-svg-nodes"></g>
+                            </svg>
+                        </div>
+
+                        <!-- Bottom Legend Bar -->
+                        <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 px-1">
+                            <div class="flex flex-wrap items-center gap-4">
+                                <span class="inline-flex items-center gap-1.5 font-medium">
+                                    <span class="w-3 h-3 rounded-full bg-gold-600 inline-block ring-2 ring-amber-200"></span>
+                                    7 Negara Tujuan PTLN (12 Siswa)
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 font-medium">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-800 inline-block ring-2 ring-emerald-200"></span>
+                                    Hub Asal: MAN 2 Kota Malang & PTDN (454 Siswa)
+                                </span>
+                            </div>
+                            <span class="text-[11px] text-slate-400">Klik pin negara untuk melihat daftar penerima beasiswa & PTLN</span>
+                        </div>
+                    </div>
+
+                    <!-- VIEW B: EMBEDDED SVG INDONESIA MAP (13 KOTA PTDN) -->
+                    <div id="view-geo-indonesia" class="hidden w-full h-full flex-col justify-between p-3 sm:p-5">
+                        <div class="relative w-full flex-1 flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-b from-[#E8F0F6] to-[#F3F7FA] border border-slate-200/80 shadow-inner">
+                            <svg id="indonesia-svg-map" viewBox="0 0 1000 440" class="w-full h-auto max-h-[450px] select-none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="indoIslandGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#D1E3DD"/>
+                                        <stop offset="100%" stop-color="#B9D4CB"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- Grid Koordinat Nusantara -->
+                                <g stroke="#CBD5E1" stroke-width="0.7" stroke-dasharray="3 3" opacity="0.75">
+                                    <line x1="0" y1="150" x2="1000" y2="150"/>
+                                    <line x1="0" y1="295" x2="1000" y2="295"/>
+                                    <line x1="250" y1="0" x2="250" y2="440"/>
+                                    <line x1="500" y1="0" x2="500" y2="440"/>
+                                    <line x1="750" y1="0" x2="750" y2="440"/>
+                                </g>
+                                <text x="16" y="144" font-size="9" fill="#64748B" font-family="Inter, sans-serif" font-weight="600">GARIS KHATULISTIWA</text>
+
+                                <!-- Siluet Kepulauan Indonesia yang Rapi -->
+                                <g fill="url(#indoIslandGrad)" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round">
+                                    <!-- Sumatera -->
+                                    <path d="M 55,65 L 95,85 L 155,145 L 215,205 L 245,255 L 222,272 L 175,225 L 115,165 L 65,105 Z"/>
+                                    <!-- Jawa & Madura -->
+                                    <path d="M 248,282 L 325,292 L 405,305 L 485,312 L 502,326 L 435,332 L 345,322 L 255,304 Z"/>
+                                    <!-- Madura -->
+                                    <path d="M 456,298 L 486,298 L 486,305 L 456,305 Z"/>
+                                    <!-- Bali & Nusa Tenggara -->
+                                    <path d="M 510,322 L 532,322 L 532,333 L 510,333 Z"/>
+                                    <path d="M 540,324 L 572,324 L 572,335 L 540,335 Z"/>
+                                    <path d="M 580,326 L 635,326 L 635,338 L 580,338 Z"/>
+                                    <path d="M 645,330 L 710,326 L 710,342 L 645,342 Z"/>
+                                    <!-- Kalimantan -->
+                                    <path d="M 335,135 L 415,95 L 475,115 L 495,165 L 465,215 L 395,222 L 345,195 Z"/>
+                                    <!-- Sulawesi -->
+                                    <path d="M 535,145 L 615,135 L 625,152 L 575,165 L 595,205 L 582,235 L 560,215 L 548,238 L 530,222 L 542,175 Z"/>
+                                    <!-- Kepulauan Maluku (Ambon) -->
+                                    <path d="M 675,155 L 695,155 L 695,185 L 675,185 Z"/>
+                                    <path d="M 695,210 L 735,208 L 735,224 L 695,224 Z"/>
+                                    <!-- Papua -->
+                                    <path d="M 765,175 L 825,175 L 865,195 L 945,215 L 945,285 L 875,275 L 835,245 L 785,225 Z"/>
+                                </g>
+
+                                <!-- Garis Konektivitas Domestik dari Malang (455, 318) -->
+                                <g fill="none" stroke="#065F46" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.45">
+                                    <path d="M 455,318 Q 305,235 152,188"/> <!-- Padang -->
+                                    <path d="M 455,318 Q 355,285 268,289"/> <!-- Jabodetabek -->
+                                    <path d="M 455,318 Q 375,295 292,301"/> <!-- Bandung -->
+                                    <path d="M 455,318 Q 415,295 375,303"/> <!-- Semarang -->
+                                    <path d="M 455,318 Q 415,308 378,318"/> <!-- Yogyakarta -->
+                                    <path d="M 455,318 Q 425,305 398,313"/> <!-- Surakarta -->
+                                    <path d="M 455,318 Q 485,315 521,327"/> <!-- Denpasar -->
+                                    <path d="M 455,318 Q 585,255 712,216"/> <!-- Ambon -->
+                                </g>
+
+                                <!-- Layer Titik Kota Indonesia (Di-render via JS) -->
+                                <g id="indo-svg-nodes"></g>
+                            </svg>
+                        </div>
+
+                        <div class="mt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 px-1">
+                            <div class="flex flex-wrap items-center gap-4">
+                                <span class="inline-flex items-center gap-1.5 font-medium">
+                                    <span class="w-3 h-3 rounded-full bg-emerald-800 inline-block ring-2 ring-emerald-200"></span>
+                                    13 Kota Tujuan Studi Lanjut Nasional (454 Siswa • 42 Kampus)
+                                </span>
+                            </div>
+                            <span class="text-[11px] text-slate-400">Klik pin kota di Pulau Sumatera, Jawa, Madura, Bali, hingga Maluku</span>
+                        </div>
+                    </div>
+
+                    <!-- VIEW C: KARTU WILAYAH & KLASTER KAMPUS (GRID VISUAL) -->
+                    <div id="view-geo-cards" class="hidden w-full h-full p-4 sm:p-5 overflow-y-auto max-h-[520px]">
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-gold-600 mb-2.5 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-gold-600"></span>
+                                    Klaster Kampus Luar Negeri (PTLN — 12 Siswa di 7 Negara)
+                                </h3>
+                                <div id="cards-ptln-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5"></div>
+                            </div>
+                            <div class="pt-2">
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800 mb-2.5 flex items-center gap-1.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-800"></span>
+                                    Klaster Kota Tujuan Dalam Negeri (PTDN — 454 Siswa di 13 Kota)
+                                </h3>
+                                <div id="cards-ptdn-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right 4 Columns: Panel Detail Kampus & Daftar Siswa -->
+                <div class="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-slate-200 bg-slate-50/70 flex flex-col h-[480px] sm:h-[520px]">
+                    <div class="p-4 sm:p-5 bg-white border-b border-slate-200/80">
+                        <div class="flex items-center justify-between">
+                            <span id="detail-region-badge" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800">
+                                Sorotan Wilayah
+                            </span>
+                            <span id="detail-count-badge" class="text-xs font-bold text-slate-600">466 Alumni</span>
+                        </div>
+                        <h3 id="detail-title" class="font-display text-base sm:text-lg font-bold text-slate-900 mt-2">
+                            Pilih Negara / Kota di Peta
+                        </h3>
+                        <p id="detail-subtitle" class="text-xs text-slate-500 mt-0.5">
+                            Klik titik pada peta atau pilih akses cepat di bawah:
+                        </p>
+                        
+                        <!-- Quick Access Chips -->
+                        <div class="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-slate-100">
+                            <button onclick="selectLocationById('malang')" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition cursor-pointer">Malang (232)</button>
+                            <button onclick="selectLocationById('surabaya')" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition cursor-pointer">Surabaya (95)</button>
+                            <button onclick="selectLocationById('bandung')" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition cursor-pointer">Bandung (37)</button>
+                            <button onclick="selectLocationById('yogyakarta')" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition cursor-pointer">Yogyakarta (35)</button>
+                            <button onclick="selectLocationById('jabodetabek')" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition cursor-pointer">Jabodetabek (24)</button>
+                            <button onclick="selectLocationById('australia')" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-amber-50 text-amber-800 hover:bg-amber-100 transition cursor-pointer">Australia (4)</button>
+                            <button onclick="selectLocationById('mesir')" class="px-2 py-1 rounded-lg text-[11px] font-semibold bg-amber-50 text-amber-800 hover:bg-amber-100 transition cursor-pointer">Mesir (3)</button>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable Campus & Student List -->
+                    <div id="detail-content-list" class="p-4 overflow-y-auto flex-1 space-y-3">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ANALISIS PSIKOLOGI KARIR (HOLLAND RIASEC & KLASTER RUMPUN ILMU) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Left 7 Columns: Pure Self-Contained Horizontal Bar Chart -->
+            <div class="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-6 shadow-xs border border-slate-200/90 flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-5">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-800">Distribusi Peminatan Akademik</span>
+                            <h2 class="font-display text-lg sm:text-xl font-bold text-slate-900">8 Klaster Rumpun Ilmu & Profesi (466 Alumni)</h2>
+                        </div>
+                        <span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full self-start border border-emerald-200/70">
+                            Klik batang klaster untuk filter tabel
+                        </span>
+                    </div>
+
+                    <!-- Pure HTML/CSS Interactive Bar Chart (Zero CDN dependency) -->
+                    <div id="cluster-bars-container" class="space-y-3.5">
+                        <!-- Rendered via JS -->
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="text-[11px] text-slate-500 font-medium">Top 1 Prodi</div>
+                        <div class="font-display font-bold text-sm text-emerald-900 mt-0.5">Kedokteran (52)</div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="text-[11px] text-slate-500 font-medium">Top 2 Prodi</div>
+                        <div class="font-display font-bold text-sm text-emerald-900 mt-0.5">Ilmu Hukum (30)</div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="text-[11px] text-slate-500 font-medium">Top 3 Prodi</div>
+                        <div class="font-display font-bold text-sm text-emerald-900 mt-0.5">Manajemen (23)</div>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="text-[11px] text-slate-500 font-medium">Top 4 Prodi</div>
+                        <div class="font-display font-bold text-sm text-emerald-900 mt-0.5">Ilmu Komunikasi (22)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right 5 Columns: Career Psychology Insight Panel -->
+            <div class="lg:col-span-5 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 text-white rounded-2xl p-5 sm:p-6 shadow-md flex flex-col justify-between">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/30 text-gold-400 text-xs font-semibold mb-3">
+                        <span>Insight Psikologi Karir • Holland RIASEC</span>
+                    </div>
+                    <h2 class="font-display text-lg sm:text-xl font-bold text-white leading-snug">
+                        Profil Peta Minat & Strategi Pendampingan Karir Angkatan 2026
+                    </h2>
+                    <p class="text-emerald-100/85 text-xs sm:text-sm mt-2 leading-relaxed">
+                        Keterserapan <strong class="text-gold-400">96,88%</strong> menunjukkan kematangan pengambilan keputusan karir (<em>career decision-making self-efficacy</em>) yang sangat tinggi pada angkatan 2026.
+                    </p>
+
+                    <div class="mt-4 space-y-2.5">
+                        <div class="p-3 rounded-xl bg-white/10 border border-white/10">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gold-400">1. Investigative & Realistic (I-R) — 242 Alumni</span>
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-200">51,9%</span>
+                            </div>
+                            <p class="text-xs text-emerald-100/85 mt-1 leading-relaxed">
+                                Dominan pada <strong>Profesi Kesehatan (90)</strong>, <strong>Teknik & Rekayasa (90)</strong>, <strong>Teknologi Digital (38)</strong>, dan <strong>Sains (24)</strong>. Mencerminkan kapasitas analitis-empiris yang kuat.
+                            </p>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-white/10 border border-white/10">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gold-400">2. Enterprising & Social (E-S) — 187 Alumni</span>
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-200">40,1%</span>
+                            </div>
+                            <p class="text-xs text-emerald-100/85 mt-1 leading-relaxed">
+                                Kuat di <strong>Bisnis, Hukum & Sosial Profesional (134)</strong>, <strong>Humaniora (40)</strong>, dan <strong>Pendidikan (13)</strong>. Menonjolkan kepemimpinan, komunikasi publik, dan literasi hukum-ekonomi.
+                            </p>
+                        </div>
+
+                        <div class="p-3 rounded-xl bg-white/10 border border-white/10">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-gold-400">3. Interdisipliner & Mobilitas Global — 37+ Alumni</span>
+                                <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-200">7,9%</span>
+                            </div>
+                            <p class="text-xs text-emerald-100/85 mt-1 leading-relaxed">
+                                Munculnya minat pada prodi hibrida (<em>Digital Psychology, Agrotechnopreneur, Double Degree ITB-UQ</em>) menandakan kesiapan menghadapi disrupsi industri masa depan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategi Pendampingan 12 Siswa Gap Year -->
+                <div class="mt-4 pt-3.5 border-t border-emerald-700/70">
+                    <p class="text-xs text-emerald-100/95 leading-relaxed">
+                        <strong class="text-gold-400">Program Khusus BK (12 Siswa Gap Year):</strong> Pendampingan <em>cognitive reframing</em> untuk mencegah kecemasan akademik, asesmen ulang minat RIASEC, serta klinik strategi UTBK/Beasiswa 2027.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DIREKTORI PENCARIAN & FILTER DATA ALUMNI LENGKAP -->
+        <section id="direktori-alumni" class="bg-white rounded-2xl shadow-xs border border-slate-200/90 overflow-hidden">
+            <div class="p-5 sm:p-6 border-b border-slate-100">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-800">Database Terintegrasi</span>
+                        <h2 class="font-display text-lg sm:text-xl font-bold text-slate-900">Direktori Pencarian & Filter Data Alumni 2026</h2>
+                    </div>
+                    
+                    <!-- Real-time Search Box -->
+                    <div class="relative w-full md:w-80">
+                        <svg class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                        </svg>
+                        <input type="text" id="search-input" placeholder="Cari nama, kampus, atau prodi..." 
+                            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-800/20 focus:border-emerald-800 transition">
+                    </div>
+                </div>
+
+                <!-- 4 Filter Dropdowns (Kelas, Kategori, Jalur Masuk, Klaster) -->
+                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Kelas Asal</label>
+                        <select id="filter-class" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/60 focus:outline-none focus:border-emerald-800">
+                            <option value="ALL">Semua Kelas (14 Rombel)</option>
+                            <option value="XII IPA 1">XII IPA 1</option>
+                            <option value="XII IPA 2">XII IPA 2</option>
+                            <option value="XII IPA 3">XII IPA 3</option>
+                            <option value="XII IPA 4">XII IPA 4</option>
+                            <option value="XII IPA 5">XII IPA 5</option>
+                            <option value="XII IPA 6">XII IPA 6</option>
+                            <option value="XII IPA 7">XII IPA 7</option>
+                            <option value="XII IPA 8">XII IPA 8</option>
+                            <option value="XII IPA 9">XII IPA 9</option>
+                            <option value="XII IPS 1">XII IPS 1</option>
+                            <option value="XII IPS 2">XII IPS 2</option>
+                            <option value="XII IPS 3">XII IPS 3</option>
+                            <option value="XII BAHASA">XII BAHASA</option>
+                            <option value="XII KEAGAMAAN">XII KEAGAMAAN</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Kategori Kampus</label>
+                        <select id="filter-category" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/60 focus:outline-none focus:border-emerald-800">
+                            <option value="ALL">Semua Kategori (466)</option>
+                            <option value="PTLN">Kampus Luar Negeri / PTLN (12)</option>
+                            <option value="BEASISWA">Penerima Beasiswa (27)</option>
+                            <option value="GOLDEN">Golden Ticket & Kemitraan (20)</option>
+                            <option value="PTN">PTN & Kedinasan (436)</option>
+                            <option value="PTS">Perguruan Tinggi Swasta / PTS (18)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Jalur Masuk Seleksi</label>
+                        <select id="filter-pathway" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/60 focus:outline-none focus:border-emerald-800">
+                            <option value="ALL">Semua Jalur Masuk</option>
+                            <option value="SNBT">SNBT-UTBK (181)</option>
+                            <option value="MANDIRI_PTN">Seleksi Mandiri PTN (156)</option>
+                            <option value="SNBP">SNBP (81)</option>
+                            <option value="BEASISWA">Beasiswa BIB / LPDP / Garuda (27)</option>
+                            <option value="GOLDEN">Golden Ticket / TOP ITB / Mitra (20)</option>
+                            <option value="MANDIRI_PTS">Seleksi Mandiri PTS (18)</option>
+                            <option value="IUP">International Undergraduate Program (IUP)</option>
+                            <option value="SPAN_PTKIN">SPAN-PTKIN (3)</option>
+                            <option value="UM_PTKIN">UM-PTKIN (2)</option>
+                            <option value="MANDIRI_PTLN">Seleksi Mandiri PTLN (2)</option>
+                            <option value="KEDINASAN">Sekolah Kedinasan & PT Khusus (4)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Klaster Rumpun Ilmu</label>
+                        <select id="filter-cluster" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs sm:text-sm bg-slate-50/60 focus:outline-none focus:border-emerald-800">
+                            <option value="ALL">Semua Klaster Keilmuan</option>
+                            <option value="Bisnis, Hukum & Sosial Profesional">Bisnis, Hukum & Sosial Profesional (134)</option>
+                            <option value="Profesi Kesehatan">Profesi Kesehatan (90)</option>
+                            <option value="Teknik & Rekayasa">Teknik & Rekayasa (90)</option>
+                            <option value="Humaniora & Sosial">Humaniora & Sosial (40)</option>
+                            <option value="Teknologi & Digital">Teknologi & Digital (38)</option>
+                            <option value="Bidang Lainnya">Bidang Lainnya (37)</option>
+                            <option value="Bidang Sains">Bidang Sains (24)</option>
+                            <option value="Pendidikan">Pendidikan (13)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bar Info Hasil & Tombol Reset -->
+            <div class="px-5 sm:px-6 py-2.5 bg-slate-50 border-b border-slate-200/70 flex items-center justify-between text-xs text-slate-600">
+                <span>Menampilkan <strong id="showing-count" class="text-emerald-900">0</strong> data alumni sesuai kriteria</span>
+                <button onclick="resetFilters()" class="text-emerald-800 hover:text-emerald-950 font-bold inline-flex items-center gap-1 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    <span>Reset Filter</span>
+                </button>
+            </div>
+
+            <!-- Tabel Direktori -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50/90 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                            <th class="py-3.5 px-4 sm:px-6">Nama Siswa</th>
+                            <th class="py-3.5 px-3">Kelas</th>
+                            <th class="py-3.5 px-4">Perguruan Tinggi</th>
+                            <th class="py-3.5 px-4">Program Studi</th>
+                            <th class="py-3.5 px-4">Klaster Keilmuan</th>
+                            <th class="py-3.5 px-4 sm:px-6">Jalur Masuk / Beasiswa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alumni-table-body" class="divide-y divide-slate-100 text-xs sm:text-sm">
+                        <!-- Rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="p-4 sm:px-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-50/40">
+                <div class="text-xs text-slate-500" id="pagination-info">Halaman 1</div>
+                <div class="flex items-center gap-2">
+                    <button id="prev-page" onclick="changePage(-1)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 cursor-pointer">
+                        Sebelumnya
+                    </button>
+                    <button id="next-page" onclick="changePage(1)" class="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 cursor-pointer">
+                        Berikutnya
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+            <div>
+                <strong class="text-slate-800">MAN 2 Kota Malang</strong> • Sistem Informasi Geospasial & Psikologi Karir Alumni 2026
+            </div>
+            <div>
+                Rekapitulasi Resmi Pendataan Studi Lanjut (Total 481 Siswa: 466 Diterima, 12 Gap Year, 3 Menunggu)
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Simulasi Update Data Real-Time -->
+    <div id="update-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="px-6 py-4 bg-emerald-900 text-white flex items-center justify-between">
+                <h3 class="font-display font-bold text-base sm:text-lg">Update Data Kelulusan Real-Time (Tim BK)</h3>
+                <button onclick="closeUpdateModal()" class="text-emerald-200 hover:text-white cursor-pointer font-bold text-lg">✕</button>
+            </div>
+            
+            <form id="realtime-form" onsubmit="handleRealtimeSubmit(event)" class="p-6 space-y-4 text-xs sm:text-sm">
+                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs">
+                    <strong>Antrian Pengumuman Saat Ini:</strong> Tersisa <strong>3 siswa</strong> yang menunggu pengumuman akhir (2 siswa <strong>XII IPA 7</strong> dan 1 siswa <strong>XII IPS 1</strong>).
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Nama Lengkap Siswa *</label>
+                        <input type="text" id="input-name" required placeholder="Contoh: MUHAMMAD FAUZAN" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:border-emerald-800 focus:outline-none uppercase">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Kelas *</label>
+                        <select id="input-class" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:border-emerald-800 focus:outline-none">
+                            <option value="XII IPA 7">XII IPA 7 (Menunggu Pengumuman)</option>
+                            <option value="XII IPS 1">XII IPS 1 (Menunggu Pengumuman)</option>
+                            <option value="XII IPA 1">XII IPA 1</option>
+                            <option value="XII IPA 2">XII IPA 2</option>
+                            <option value="XII IPA 3">XII IPA 3</option>
+                            <option value="XII IPA 4">XII IPA 4</option>
+                            <option value="XII IPA 5">XII IPA 5</option>
+                            <option value="XII IPA 6">XII IPA 6</option>
+                            <option value="XII IPA 8">XII IPA 8</option>
+                            <option value="XII IPA 9">XII IPA 9</option>
+                            <option value="XII IPS 2">XII IPS 2</option>
+                            <option value="XII IPS 3">XII IPS 3</option>
+                            <option value="XII BAHASA">XII BAHASA</option>
+                            <option value="XII KEAGAMAAN">XII KEAGAMAAN</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Kota / Negara Tujuan *</label>
+                        <select id="input-location" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:border-emerald-800 focus:outline-none">
+                            <option value="malang">Malang, Jawa Timur</option>
+                            <option value="surabaya">Surabaya, Jawa Timur</option>
+                            <option value="yogyakarta">Yogyakarta, DIY</option>
+                            <option value="bandung">Bandung, Jawa Barat</option>
+                            <option value="jabodetabek">Jakarta / Depok / Bogor</option>
+                            <option value="jember">Jember, Jawa Timur</option>
+                            <option value="semarang">Semarang, Jawa Tengah</option>
+                            <option value="australia">Australia (PTLN)</option>
+                            <option value="singapura">Singapura (PTLN)</option>
+                            <option value="mesir">Kairo, Mesir (PTLN)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Perguruan Tinggi *</label>
+                        <input type="text" id="input-univ" required placeholder="Contoh: UNIVERSITAS BRAWIJAYA" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:border-emerald-800 focus:outline-none uppercase">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Program Studi *</label>
+                        <input type="text" id="input-prodi" required placeholder="Contoh: PENDIDIKAN DOKTER" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:border-emerald-800 focus:outline-none uppercase">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-700 mb-1">Klaster Rumpun Ilmu *</label>
+                        <select id="input-cluster" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:border-emerald-800 focus:outline-none">
+                            <option value="Profesi Kesehatan">Profesi Kesehatan</option>
+                            <option value="Bisnis, Hukum & Sosial Profesional">Bisnis, Hukum & Sosial Profesional</option>
+                            <option value="Teknik & Rekayasa">Teknik & Rekayasa</option>
+                            <option value="Teknologi & Digital">Teknologi & Digital</option>
+                            <option value="Humaniora & Sosial">Humaniora & Sosial</option>
+                            <option value="Bidang Sains">Bidang Sains</option>
+                            <option value="Pendidikan">Pendidikan</option>
+                            <option value="Bidang Lainnya">Bidang Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-semibold text-slate-700 mb-1">Jalur Masuk / Beasiswa *</label>
+                    <input type="text" id="input-pathway" required value="SELEKSI MANDIRI PTN" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:border-emerald-800 focus:outline-none uppercase">
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="input-from-pending" checked class="rounded text-emerald-800 focus:ring-emerald-800">
+                    <label for="input-from-pending" class="text-xs text-slate-600">Konversi dari status <em>Menunggu Pengumuman</em></label>
+                </div>
+
+                <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
+                    <button type="button" onclick="closeUpdateModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 cursor-pointer">Batal</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white font-semibold shadow-xs cursor-pointer">Simpan & Update Peta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 bg-emerald-950 text-white px-4 py-3 rounded-xl shadow-xl border border-emerald-700 text-xs sm:text-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-gold-400"></span>
+        <span id="toast-message">Data berhasil disinkronkan!</span>
+    </div>
+
+    <script>
+        // =========================================================================
+        // 1. MASTER DATA REKAPITULASI ALUMNI MAN 2 KOTA MALANG ANGKATAN 2026
+        // =========================================================================
+        const kpiState = {
+            totalStudents: 481,
+            accepted: 466,
+            gapYear: 12,
+            pending: 3,
+            abroad: 12,
+            domestic: 454,
+            scholarships: 47 // 27 Beasiswa + 20 Golden Ticket/TOP/Kemitraan
+        };
+
+        // Data Wilayah PTLN (7 Negara) & PTDN (13 Kota, 42 Kampus, Total 454 Siswa)
+        const geoLocations = [
+            // --- 7 NEGARA LUAR NEGERI (12 SISWA) ---
+            {
+                id: 'australia',
+                label: 'Australia',
+                name: 'Australia (Sydney, Canberra, Melbourne, Brisbane)',
+                type: 'PTLN',
+                worldX: 855,
+                worldY: 392,
+                count: 4,
+                campuses: [
+                    { name: 'University of New South Wales (UNSW)', count: 1 },
+                    { name: 'The Australian National University (ANU)', count: 1 },
+                    { name: 'Monash University', count: 1 },
+                    { name: 'Double Degree ITB - University of Queensland', count: 1 }
+                ]
+            },
+            {
+                id: 'mesir',
+                label: 'Mesir',
+                name: 'Kairo, Mesir',
+                type: 'PTLN',
+                worldX: 558,
+                worldY: 182,
+                count: 3,
+                campuses: [
+                    { name: 'Universitas Al Azhar Kairo, Mesir', count: 3 }
+                ]
+            },
+            {
+                id: 'kanada',
+                label: 'Kanada',
+                name: 'Toronto, Kanada',
+                type: 'PTLN',
+                worldX: 252,
+                worldY: 128,
+                count: 1,
+                campuses: [
+                    { name: 'University of Toronto', count: 1 }
+                ]
+            },
+            {
+                id: 'singapura',
+                label: 'Singapura',
+                name: 'Singapura',
+                type: 'PTLN',
+                worldX: 746,
+                worldY: 282,
+                count: 1,
+                campuses: [
+                    { name: 'National University of Singapore (NUS)', count: 1 }
+                ]
+            },
+            {
+                id: 'malaysia',
+                label: 'Malaysia',
+                name: 'Kuala Lumpur, Malaysia',
+                type: 'PTLN',
+                worldX: 740,
+                worldY: 272,
+                count: 1,
+                campuses: [
+                    { name: 'Universiti Malaya', count: 1 }
+                ]
+            },
+            {
+                id: 'korsel',
+                label: 'Korea Selatan',
+                name: 'Seoul, Korea Selatan',
+                type: 'PTLN',
+                worldX: 832,
+                worldY: 158,
+                count: 1,
+                campuses: [
+                    { name: 'Ewha Womans University', count: 1 }
+                ]
+            },
+            {
+                id: 'maroko',
+                label: 'Maroko',
+                name: 'Tetouan, Maroko',
+                type: 'PTLN',
+                worldX: 458,
+                worldY: 168,
+                count: 1,
+                campuses: [
+                    { name: 'Universitas Abdel Malek Saadi Tetouan', count: 1 }
+                ]
+            },
+
+            // --- 13 KOTA DALAM NEGERI (454 SISWA) ---
+            {
+                id: 'malang',
+                label: 'Malang',
+                name: 'Malang Raya, Jawa Timur (Hub Utama)',
+                type: 'PTDN',
+                indoX: 455,
+                indoY: 318,
+                count: 232,
+                campuses: [
+                    { name: 'Universitas Brawijaya (UB)', count: 150 },
+                    { name: 'Universitas Negeri Malang (UM)', count: 48 },
+                    { name: 'UIN Maulana Malik Ibrahim Malang', count: 17 },
+                    { name: 'Politeknik Negeri Malang (Polinema)', count: 7 },
+                    { name: 'Universitas Muhammadiyah Malang (UMM)', count: 3 },
+                    { name: 'Universitas Islam Malang (UNISMA)', count: 3 },
+                    { name: 'Poltekkes Kemenkes Malang', count: 2 },
+                    { name: 'Universitas Merdeka Malang (UNMER)', count: 1 },
+                    { name: 'Institut Teknologi Nasional (ITN) Malang', count: 1 }
+                ]
+            },
+            {
+                id: 'surabaya',
+                label: 'Surabaya',
+                name: 'Surabaya & Sidoarjo, Jawa Timur',
+                type: 'PTDN',
+                indoX: 448,
+                indoY: 304,
+                count: 95,
+                campuses: [
+                    { name: 'Institut Teknologi Sepuluh Nopember (ITS)', count: 41 },
+                    { name: 'Universitas Airlangga (UNAIR)', count: 36 },
+                    { name: 'Universitas Negeri Surabaya (UNESA)', count: 5 },
+                    { name: 'Politeknik Elektronika Negeri Surabaya (PENS)', count: 4 },
+                    { name: 'UPN "Veteran" Jawa Timur', count: 4 },
+                    { name: 'Universitas Ciputra Surabaya', count: 2 },
+                    { name: 'UIN Sunan Ampel Surabaya (UINSA)', count: 1 },
+                    { name: 'Politeknik Perkapalan Negeri Surabaya (PPNS)', count: 1 },
+                    { name: 'Universitas Hang Tuah Surabaya', count: 1 }
+                ]
+            },
+            {
+                id: 'bandung',
+                label: 'Bandung',
+                name: 'Bandung & Sumedang, Jawa Barat',
+                type: 'PTDN',
+                indoX: 292,
+                indoY: 301,
+                count: 37,
+                campuses: [
+                    { name: 'Institut Teknologi Bandung (ITB)', count: 25 },
+                    { name: 'Universitas Padjadjaran (UNPAD)', count: 11 },
+                    { name: 'Telkom University', count: 1 }
+                ]
+            },
+            {
+                id: 'yogyakarta',
+                label: 'Yogyakarta',
+                name: 'Daerah Istimewa Yogyakarta',
+                type: 'PTDN',
+                indoX: 378,
+                indoY: 318,
+                count: 35,
+                campuses: [
+                    { name: 'Universitas Gadjah Mada (UGM)', count: 31 },
+                    { name: 'UPN "Veteran" Yogyakarta', count: 2 },
+                    { name: 'Akademi Angkatan Udara (AAU)', count: 1 },
+                    { name: 'UIN Sunan Kalijaga Yogyakarta', count: 1 }
+                ]
+            },
+            {
+                id: 'jabodetabek',
+                label: 'Jakarta/Depok/Bogor',
+                name: 'Jakarta, Depok & Bogor (Jabodetabek)',
+                type: 'PTDN',
+                indoX: 268,
+                indoY: 289,
+                count: 24,
+                campuses: [
+                    { name: 'Universitas Indonesia (UI)', count: 11 },
+                    { name: 'Universitas Bina Nusantara (BINUS)', count: 6 },
+                    { name: 'UIN Syarif Hidayatullah Jakarta', count: 3 },
+                    { name: 'Institut Pertanian Bogor (IPB University)', count: 2 },
+                    { name: 'Universitas Pertahanan RI (UNHAN)', count: 1 },
+                    { name: 'Universitas Gunadarma', count: 1 }
+                ]
+            },
+            {
+                id: 'jember',
+                label: 'Jember',
+                name: 'Jember, Jawa Timur',
+                type: 'PTDN',
+                indoX: 484,
+                indoY: 320,
+                count: 14,
+                campuses: [
+                    { name: 'Universitas Jember (UNEJ)', count: 14 }
+                ]
+            },
+            {
+                id: 'semarang',
+                label: 'Semarang',
+                name: 'Semarang, Jawa Tengah',
+                type: 'PTDN',
+                indoX: 375,
+                indoY: 302,
+                count: 8,
+                campuses: [
+                    { name: 'Universitas Diponegoro (UNDIP)', count: 8 }
+                ]
+            },
+            {
+                id: 'surakarta',
+                label: 'Surakarta',
+                name: 'Surakarta (Solo), Jawa Tengah',
+                type: 'PTDN',
+                indoX: 398,
+                indoY: 312,
+                count: 3,
+                campuses: [
+                    { name: 'Universitas Sebelas Maret (UNS)', count: 2 },
+                    { name: 'Institut Seni Indonesia (ISI) Surakarta', count: 1 }
+                ]
+            },
+            {
+                id: 'tulungagung',
+                label: 'Tulungagung',
+                name: 'Tulungagung, Jawa Timur',
+                type: 'PTDN',
+                indoX: 432,
+                indoY: 321,
+                count: 1,
+                campuses: [
+                    { name: 'UIN Sayyid Ali Rahmatullah (UIN SATU)', count: 1 }
+                ]
+            },
+            {
+                id: 'madura',
+                label: 'Madura',
+                name: 'Bangkalan, Madura',
+                type: 'PTDN',
+                indoX: 468,
+                indoY: 300,
+                count: 1,
+                campuses: [
+                    { name: 'Universitas Trunojoyo Madura (UTM)', count: 1 }
+                ]
+            },
+            {
+                id: 'denpasar',
+                label: 'Denpasar',
+                name: 'Denpasar / Badung, Bali',
+                type: 'PTDN',
+                indoX: 521,
+                indoY: 327,
+                count: 1,
+                campuses: [
+                    { name: 'Universitas Udayana (UNUD)', count: 1 }
+                ]
+            },
+            {
+                id: 'padang',
+                label: 'Padang',
+                name: 'Padang, Sumatera Barat',
+                type: 'PTDN',
+                indoX: 152,
+                indoY: 188,
+                count: 1,
+                campuses: [
+                    { name: 'Universitas Andalas (UNAND)', count: 1 }
+                ]
+            },
+            {
+                id: 'ambon',
+                label: 'Ambon',
+                name: 'Ambon, Maluku',
+                type: 'PTDN',
+                indoX: 712,
+                indoY: 216,
+                count: 1,
+                campuses: [
+                    { name: 'Universitas Pattimura (UNPATTI)', count: 1 }
+                ]
+            }
+        ];
+
+        // Database Siswa (Mencakup seluruh 12 PTLN, 27 Beasiswa, 20 Golden Ticket/TOP/Kemitraan, IUP, PTKIN, Kedinasan, PTN & PTS)
+        const alumniRecords = [
+            // --- 12 ALUMNI LUAR NEGERI (PTLN) ---
+            { name: "MUHAMMAD ARKANANTA PUTRA", cls: "XII IPA 8", univ: "UNIVERSITY OF NEW SOUTH WALES", prodi: "BACHELOR MECHANICAL ENGINEERING", pathway: "BEASISWA GARUDA 2", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Teknik & Rekayasa", locId: "australia" },
+            { name: "AVICENNA ULILVIDYA BASRI", cls: "XII IPS 2", univ: "THE AUSTRALIAN NATIONAL UNIVERSITY", prodi: "FINANCE, ECONOMICS, AND STATISTICS", pathway: "BEASISWA INDONESIA BANGKIT (BIB)", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "australia" },
+            { name: "AHNAF TIAR VALEXI", cls: "XII IPA 8", univ: "MONASH UNIVERSITY", prodi: "BACHELOR OF INFORMATION", pathway: "MONASH STUDY GRANT", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Teknologi & Digital", locId: "australia" },
+            { name: "MUHAMMAD LAFRAN ZAHIRUDDIN ASFIANSYAH", cls: "XII IPA 5", univ: "ITB & UNIVERSITY OF QUEENSLAND (DOUBLE DEGREE)", prodi: "TEKNIK METALURGI (ITB) & TEKNIK KIMIA (UQ)", pathway: "BEASISWA GARUDA 2 (DOUBLE DEGREE)", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Teknik & Rekayasa", locId: "australia" },
+            { name: "RAFIZA IBRA AL DAFFA", cls: "XII KEAGAMAAN", univ: "UNIVERSITAS AL AZHAR KAIRO, MESIR", prodi: "TAHAP PENYETARAAN IJAZAH", pathway: "BEASISWA PEMERINTAH SETEMPAT", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Bidang Lainnya", locId: "mesir" },
+            { name: "FAKHRANA YUANITA LESMANA", cls: "XII KEAGAMAAN", univ: "UNIVERSITAS AL AZHAR KAIRO, MESIR", prodi: "TAHAP PENYETARAAN IJAZAH", pathway: "BEASISWA PEMERINTAH SETEMPAT", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Bidang Lainnya", locId: "mesir" },
+            { name: "A. HUSEIN FATAH AL-HIDAYAH BASORI", cls: "XII KEAGAMAAN", univ: "UNIVERSITAS AL AZHAR KAIRO, MESIR", prodi: "TAHAP PENYETARAAN IJAZAH", pathway: "BEASISWA PEMERINTAH SETEMPAT", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Bidang Lainnya", locId: "mesir" },
+            { name: "MUHAMMAD LINGGA PADANTYA JUNAEDI", cls: "XII IPA 8", univ: "UNIVERSITY OF TORONTO", prodi: "STUDIES IN PHYSICAL AND MATHEMATICAL SCIENCES", pathway: "BEASISWA TALENTA INDONESIA (LPDP)", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Bidang Sains", locId: "kanada" },
+            { name: "SYANDANA GIAN ARGANTA", cls: "XII IPA 8", univ: "NATIONAL UNIVERSITY OF SINGAPORE", prodi: "BACHELOR OF COMPUTER ENGINEERING WITH MINOR IN ECONOMICS", pathway: "BEASISWA GARUDA 1", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Teknik & Rekayasa", locId: "singapura" },
+            { name: "NAJWA ZAKIYATUL DHOHIROH", cls: "XII IPA 7", univ: "UNIVERSITI MALAYA", prodi: "BACHELOR OF REAL ESTATE", pathway: "SELEKSI MANDIRI PTLN", cat: "PTLN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malaysia" },
+            { name: "RAYA NAZIIDHIYAA VRIGGIE", cls: "XII IPS 2", univ: "EWHA WOMANS UNIVERSITY", prodi: "DIVISION OF COMMUNICATION MEDIA", pathway: "SELEKSI MANDIRI PTLN", cat: "PTLN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "korsel" },
+            { name: "ACHMAD AUFA SYALABY", cls: "XII BAHASA", univ: "UNIVERSITAS ABDEL MALEK SAADI TETOUAN MAROKO", prodi: "USHULUDDIN", pathway: "AMCI MAROKO (KEMENAG RI)", cat: "PTLN", isScholarship: true, isGolden: false, cluster: "Bidang Lainnya", locId: "maroko" },
+
+            // --- BEASISWA DALAM NEGERI (BIB, LPDP, GARUDA, KEMENHAN) ---
+            { name: "ADINDA ZAHRAA VANIA", cls: "XII KEAGAMAAN", univ: "UIN MAULANA MALIK IBRAHIM MALANG", prodi: "BAHASA DAN SASTRA ARAB", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - GOLDEN TICKET", cat: "PTN", isScholarship: true, isGolden: true, cluster: "Humaniora & Sosial", locId: "malang" },
+            { name: "NEISYA ARDHIA PUTRI", cls: "XII IPA 8", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "FAKULTAS TEKNIK PERTAMBANGAN DAN PERMINYAKAN", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Teknik & Rekayasa", locId: "bandung" },
+            { name: "REZVANDIAR CHEVALIER AL-AHZA", cls: "XII IPA 7", univ: "UNIVERSITAS GADJAH MADA", prodi: "ELEKTRONIKA DAN INSTRUMENTASI", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBT", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Teknik & Rekayasa", locId: "yogyakarta" },
+            { name: "SYAJAROTUL ARRUYA LUTFHI AZZAHRO", cls: "XII IPS 1", univ: "UNIVERSITAS BRAWIJAYA", prodi: "AKUNTANSI", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "SATRIO ATMODJO", cls: "XII IPS 3", univ: "UNIVERSITAS GADJAH MADA", prodi: "HUKUM", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "yogyakarta" },
+            { name: "WILDAN ID'HAR RAFIF", cls: "XII IPS 1", univ: "UNIVERSITAS GADJAH MADA", prodi: "GEOGRAFI LINGKUNGAN", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBT", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Bidang Sains", locId: "yogyakarta" },
+            { name: "RA'IDAH FATHIN", cls: "XII IPA 4", univ: "UNIVERSITAS BRAWIJAYA", prodi: "TEKNIK INFORMATIKA", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Teknologi & Digital", locId: "malang" },
+            { name: "HADYAN FAYYADH RASENDRIYA", cls: "XII IPS 2", univ: "UNIVERSITAS BRAWIJAYA", prodi: "AKUNTANSI", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "BINTANG GEMA FITRIANSYAH", cls: "XII IPA 7", univ: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER", prodi: "SISTEM INFORMASI", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Teknologi & Digital", locId: "surabaya" },
+            { name: "MUHAMMAD AWWAB MASHAN", cls: "XII IPA 8", univ: "UIN MAULANA MALIK IBRAHIM MALANG", prodi: "PENDIDIKAN DOKTER", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBT", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "MUHAMMAD TSABBIT QOLBY ALWASHY B.", cls: "XII IPA 4", univ: "UIN SYARIF HIDAYATULLOH JAKARTA", prodi: "PENDIDIKAN DOKTER", pathway: "BEASISWA INDONESIA BANGKIT (BIB) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Profesi Kesehatan", locId: "jabodetabek" },
+            { name: "NAUVAL MUHAMMAD JIHADY", cls: "XII IPA 4", univ: "UIN SYARIF HIDAYATULLOH JAKARTA", prodi: "PENDIDIKAN DOKTER", pathway: "BEASISWA INDONESIA BANGKIT (BIB)", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Profesi Kesehatan", locId: "jabodetabek" },
+            { name: "ILINE ARUM PUTRI BINTORO", cls: "XII IPA 8", univ: "UIN MAULANA MALIK IBRAHIM MALANG", prodi: "TEKNIK LINGKUNGAN", pathway: "BEASISWA TALENTA INDONESIA (LPDP) - SNBT", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Teknik & Rekayasa", locId: "malang" },
+            { name: "M. IZZAT ADNAN KAMAL", cls: "XII IPA 8", univ: "UIN MAULANA MALIK IBRAHIM MALANG", prodi: "PENDIDIKAN DOKTER", pathway: "BEASISWA TALENTA INDONESIA (LPDP)", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "MANGURI SYAKIRA ARDHIANTI", cls: "XII IPA 7", univ: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER", prodi: "TEKNIK ELEKTRO", pathway: "BEASISWA TALENTA INDONESIA (LPDP) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Teknik & Rekayasa", locId: "surabaya" },
+            { name: "TALITA ALYA NABILAH", cls: "XII IPA 7", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "SEKOLAH FARMASI (SF)", pathway: "BEASISWA TALENTA INDONESIA (LPDP) - SNBP", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Profesi Kesehatan", locId: "bandung" },
+            { name: "NADIA CAMILLA DARMAWAN", cls: "XII IPA 3", univ: "UNIVERSITAS INDONESIA", prodi: "PENDIDIKAN DOKTER", pathway: "BEASISWA GARUDA 2 - TALENTSCOUTING UI", cat: "PTN", isScholarship: true, isGolden: true, cluster: "Profesi Kesehatan", locId: "jabodetabek" },
+            { name: "DHANIXA AURORA SULISTYA", cls: "XII IPA 7", univ: "UNIVERSITAS PERTAHANAN", prodi: "FARMASI", pathway: "BEASISWA KEDINASAN KEMENHAN RI", cat: "PTN", isScholarship: true, isGolden: false, cluster: "Profesi Kesehatan", locId: "jabodetabek" },
+
+            // --- GOLDEN TICKET, TOP ITB & KEMITRAAN ---
+            { name: "JIHAN ZAHIRAH ROIHANY", cls: "XII BAHASA", univ: "UIN MAULANA MALIK IBRAHIM MALANG", prodi: "PENDIDIKAN AGAMA ISLAM", pathway: "GOLDEN TICKET UIN MALANG", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Pendidikan", locId: "malang" },
+            { name: "MAHARANI FEBRI GASANDHI", cls: "XII IPS 1", univ: "UIN MAULANA MALIK IBRAHIM MALANG", prodi: "PENDIDIKAN AGAMA ISLAM", pathway: "GOLDEN TICKET UIN MALANG", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Pendidikan", locId: "malang" },
+            { name: "NADIA ARIYANDINI AZZAHRA ISRO", cls: "XII IPA 9", univ: "UNIVERSITAS NEGERI MALANG", prodi: "KESEHATAN MASYARAKAT", pathway: "GOLDEN TICKET / TALENTA MUDA UM", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "MIA ANIQ SHOLIHA", cls: "XII KEAGAMAAN", univ: "UNIVERSITAS NEGERI MALANG", prodi: "ILMU KOMUNIKASI", pathway: "GOLDEN TICKET / TALENTA MUDA UM", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "ZIKRAL FAYAZID", cls: "XII IPA 7", univ: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER", prodi: "REKAYASA KECERDASAN ARTIFISIAL", pathway: "GOLDEN TICKET ITS", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Teknik & Rekayasa", locId: "surabaya" },
+            { name: "DYAN AHMAD MANGKULUHUR", cls: "XII IPA 8", univ: "UNIVERSITAS AIRLANGGA", prodi: "PENDIDIKAN DOKTER GIGI", pathway: "GOLDEN TICKET UNAIR", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Profesi Kesehatan", locId: "surabaya" },
+            { name: "CARISSA MAULIDIA", cls: "XII IPS 3", univ: "UNIVERSITAS INDONESIA", prodi: "MANAJEMEN", pathway: "TALENTSCOUTING UI", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "jabodetabek" },
+            { name: "AYASHA PUTRI NUGROHO", cls: "XII IPA 5", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "PHARMACEUTICAL SCIENCE AND TECHNOLOGY", pathway: "TALENT OUTREACH PROGRAM (TOP) ITB", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Profesi Kesehatan", locId: "bandung" },
+            { name: "LUNA NUEVA PUTRI NUGROHO", cls: "XII IPA 6", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "SCHOOL OF ELECTRICAL ENGINEERING AND INFORMATICS", pathway: "TALENT OUTREACH PROGRAM (TOP) ITB", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Teknik & Rekayasa", locId: "bandung" },
+            { name: "KHEVVA ALENO", cls: "XII IPA 6", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "ENVIRONMENTAL ENGINEERING", pathway: "TALENT OUTREACH PROGRAM (TOP) ITB", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Teknik & Rekayasa", locId: "bandung" },
+            { name: "RAFAY ALTHAF RISWANTORO", cls: "XII IPA 7", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "METALLURGICAL ENGINEERING", pathway: "TALENT OUTREACH PROGRAM (TOP) ITB", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Teknik & Rekayasa", locId: "bandung" },
+            { name: "SALVINO ALFALAHI", cls: "XII IPA 7", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "ENGINEERING PHYSICS", pathway: "TALENT OUTREACH PROGRAM (TOP) ITB", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Bidang Sains", locId: "bandung" },
+            { name: "ATHTHAR SATRIA BAARIGH AL GHIFAR", cls: "XII IPA 5", univ: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER", prodi: "FTSPK", pathway: "JALUR KEMITRAAN / KERJA SAMA", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Bidang Lainnya", locId: "surabaya" },
+            { name: "RASTY DIFENTASARI", cls: "XII IPS 1", univ: "UNIVERSITAS AIRLANGGA", prodi: "HUKUM", pathway: "JALUR KEMITRAAN / KERJA SAMA", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "surabaya" },
+            { name: "AHMAD AIDAN FAYAD ROHMAN", cls: "XII KEAGAMAAN", univ: "UNIVERSITAS NEGERI MALANG", prodi: "PENDIDIKAN BAHASA INGGRIS", pathway: "BEASISWA FREE IPI & UKT 2 SEMESTER", cat: "PTN", isScholarship: true, isGolden: true, cluster: "Pendidikan", locId: "malang" },
+            { name: "ABDULLAH HARITS AHNAF FIDDIN", cls: "XII IPA 1", univ: "UNIVERSITAS AIRLANGGA", prodi: "PENDIDIKAN DOKTER", pathway: "JALUR KEMITRAAN / KERJA SAMA", cat: "PTN", isScholarship: false, isGolden: true, cluster: "Profesi Kesehatan", locId: "surabaya" },
+
+            // --- REPRESENTASI LENGKAP PTN, PTKIN, KEDINASAN & PTS DI 13 KOTA ---
+            { name: "CARISSA ALMIRA RAMADHANI", cls: "XII IPA 8", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "ARSITEKTUR", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknik & Rekayasa", locId: "bandung" },
+            { name: "CARISSA FAWWAZ KURNIOVA", cls: "XII IPA 8", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "FAKULTAS TEKNIK MESIN DAN DIRGANTARA (FTMD)", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknik & Rekayasa", locId: "bandung" },
+            { name: "DANIAL SATRIA PUTRA DARMAWAN", cls: "XII IPA 4", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "SEKOLAH TEKNIK ELEKTRO DAN INFORMATIKA (STEI-K)", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknik & Rekayasa", locId: "bandung" },
+            { name: "MUHAMMAD HASANAIN AFIQI", cls: "XII IPS 3", univ: "INSTITUT TEKNOLOGI BANDUNG", prodi: "SEKOLAH BISNIS DAN MANAJEMEN (SBM)", pathway: "SELEKSI MANDIRI PTN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "bandung" },
+            { name: "TRISTAN FIQRI ARYA DARMAWAN", cls: "XII IPA 2", univ: "UNIVERSITAS INDONESIA", prodi: "ILMU KOMPUTER", pathway: "SELEKSI MANDIRI PTN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknologi & Digital", locId: "jabodetabek" },
+            { name: "LABIB HABIBILLAH", cls: "XII IPA 8", univ: "UNIVERSITAS INDONESIA", prodi: "ILMU KOMPUTER", pathway: "SELEKSI MANDIRI PTN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknologi & Digital", locId: "jabodetabek" },
+            { name: "AVECENNA KARIM AHMAD", cls: "XII IPS 1", univ: "UNIVERSITAS INDONESIA", prodi: "HUBUNGAN INTERNASIONAL", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Humaniora & Sosial", locId: "jabodetabek" },
+            { name: "AISYAH", cls: "XII IPA 1", univ: "UNIVERSITAS INDONESIA", prodi: "ILMU HUKUM", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "jabodetabek" },
+            { name: "SALMA AULIA AZIZZAH", cls: "XII IPA 8", univ: "UNIVERSITAS INDONESIA", prodi: "STATISTIKA", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bidang Sains", locId: "jabodetabek" },
+            { name: "VENITA AULIA RAMADHANI", cls: "XII IPA 1", univ: "UNIVERSITAS GADJAH MADA", prodi: "PENDIDIKAN DOKTER", pathway: "SELEKSI MANDIRI PTN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "yogyakarta" },
+            { name: "FADEL MUHAMMAD DHIA JAUHAR RAHMATULLAH", cls: "XII IPA 1", univ: "UNIVERSITAS GADJAH MADA", prodi: "MECHANICAL ENGINEERING", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknik & Rekayasa", locId: "yogyakarta" },
+            { name: "AZKI AZZIYAD", cls: "XII IPA 7", univ: "UNIVERSITAS GADJAH MADA", prodi: "ILMU KOMPUTER", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknologi & Digital", locId: "yogyakarta" },
+            { name: "ALIYAH NOOR JASMEEN", cls: "XII IPS 2", univ: "UNIVERSITAS GADJAH MADA", prodi: "PSIKOLOGI", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "yogyakarta" },
+            { name: "AMPELDENTA ABIYU BAMA", cls: "XII IPS 3", univ: "UNIVERSITAS GADJAH MADA", prodi: "MANAJEMEN", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "yogyakarta" },
+            { name: "GILDA NEYSA NUGRAHA", cls: "XII BAHASA", univ: "UNIVERSITAS GADJAH MADA", prodi: "HUKUM", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "yogyakarta" },
+            { name: "KYARA MARITZA ASYIRA MELVA", cls: "XII IPA 3", univ: "UNIVERSITAS AIRLANGGA", prodi: "PENDIDIKAN DOKTER", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "surabaya" },
+            { name: "ROSA ARINAL HAQ", cls: "XII IPA 4", univ: "UNIVERSITAS AIRLANGGA", prodi: "PENDIDIKAN DOKTER", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "surabaya" },
+            { name: "DAVIQ IZZAN HIDAYAT", cls: "XII IPS 3", univ: "UNIVERSITAS AIRLANGGA", prodi: "ILMU HUKUM", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "surabaya" },
+            { name: "MUHAMMAD NAVIS ABDUL ROZZAQ", cls: "XII KEAGAMAAN", univ: "UNIVERSITAS AIRLANGGA", prodi: "MANAJEMEN", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "surabaya" },
+            { name: "NURISNA ANARA MUGHNI RAYYAN", cls: "XII IPA 8", univ: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER", prodi: "TEKNOLOGI KEDOKTERAN", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "surabaya" },
+            { name: "HAYA AFIF FAIRUZ ARIQOH", cls: "XII IPA 6", univ: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER", prodi: "PENDIDIKAN DOKTER", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "surabaya" },
+            { name: "ALI RIZA ALAYUBI", cls: "XII IPA 1", univ: "INSTITUT TEKNOLOGI SEPULUH NOPEMBER", prodi: "TEKNOLOGI INFORMASI", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknologi & Digital", locId: "surabaya" },
+            { name: "FARRAS BAYANAKA IRAWAN", cls: "XII IPA 2", univ: "UNIVERSITAS BRAWIJAYA", prodi: "PENDIDIKAN DOKTER", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "TALITHA YAJNA CONCETTA", cls: "XII IPA 2", univ: "UNIVERSITAS BRAWIJAYA", prodi: "PENDIDIKAN DOKTER", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "AISHA SASIKIRANA RIZQISHARI", cls: "XII IPA 9", univ: "UNIVERSITAS BRAWIJAYA", prodi: "PENDIDIKAN DOKTER", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "HUMAIRA AULIA", cls: "XII IPA 2", univ: "UNIVERSITAS BRAWIJAYA", prodi: "PENDIDIKAN DOKTER", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "MUHAMMAD SULTAN XAVIER ALDIANSYAH", cls: "XII IPA 4", univ: "UNIVERSITAS BRAWIJAYA", prodi: "PENDIDIKAN DOKTER", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "MUHAMMAD SALMAN AL FARISI", cls: "XII IPS 1", univ: "UNIVERSITAS BRAWIJAYA", prodi: "ILMU HUKUM", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "HILLDA NAURA ASHILAH ARIPI", cls: "XII BAHASA", univ: "UNIVERSITAS BRAWIJAYA", prodi: "MANAJEMEN", pathway: "IUP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "SYLFIA DINAR SIFANIA", cls: "XII IPA 5", univ: "UNIVERSITAS BRAWIJAYA", prodi: "SAINS DATA", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknologi & Digital", locId: "malang" },
+            { name: "KALILA RABBANI", cls: "XII IPS 1", univ: "UNIVERSITAS BRAWIJAYA", prodi: "PSIKOLOGI", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "AKHDAN IVANDER ARYAPUTRA", cls: "XII IPA 1", univ: "UNIVERSITAS NEGERI MALANG", prodi: "PENDIDIKAN DOKTER", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "MUHAMMAD RAFI SOEKARNO", cls: "XII IPA 3", univ: "UNIVERSITAS NEGERI MALANG", prodi: "PENDIDIKAN DOKTER", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" },
+            { name: "ALTAMIS FAIZAN KABISATYA", cls: "XII IPS 2", univ: "UNIVERSITAS NEGERI MALANG", prodi: "PSIKOLOGI", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "GRACEEA AURELIAN ARNANDA", cls: "XII IPS 2", univ: "UNIVERSITAS PADJADJARAN", prodi: "ILMU HUBUNGAN INTERNASIONAL", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Humaniora & Sosial", locId: "bandung" },
+            { name: "IRSA WORO MAHIRA", cls: "XII IPA 5", univ: "UNIVERSITAS PADJADJARAN", prodi: "PENDIDIKAN DOKTER", pathway: "SELEKSI MANDIRI PTN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "bandung" },
+            { name: "NABILA AZ-ZAFIRA", cls: "XII IPA 3", univ: "INSTITUT PERTANIAN BOGOR", prodi: "STATISTIKA DAN SAINS DATA", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Teknologi & Digital", locId: "jabodetabek" },
+            { name: "DEWI ASMAUL HUSNAH", cls: "XII IPA 8", univ: "UNIVERSITAS DIPONEGORO", prodi: "PSIKOLOGI", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "semarang" },
+            { name: "NAJWA EMIRA GIZA HUMAYRA", cls: "XII IPA 6", univ: "UNIVERSITAS DIPONEGORO", prodi: "BISNIS DIGITAL", pathway: "SELEKSI MANDIRI PTN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bidang Lainnya", locId: "semarang" },
+            { name: "NAILA SALSABILA WIRADHIKA", cls: "XII IPA 3", univ: "UNIVERSITAS JEMBER", prodi: "PENDIDIKAN DOKTER", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "jember" },
+            { name: "SAFWANA IFRA PUTRI HERMAWAN", cls: "XII IPS 1", univ: "UNIVERSITAS SEBELAS MARET", prodi: "ILMU KOMUNIKASI", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "surakarta" },
+            { name: "ROHADATUL AISY", cls: "XII BAHASA", univ: "INSTITUT SENI INDONESIA - SURAKARTA (ISI)", prodi: "DESAIN KOMUNIKASI VISUAL", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bidang Lainnya", locId: "surakarta" },
+            { name: "DEAN SYAFIRA BERLIANA HAMSA", cls: "XII IPS 1", univ: "UNIVERSITAS ANDALAS", prodi: "HUKUM", pathway: "SNBP", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "padang" },
+            { name: "MUHAMMAD RIJALI HIROSI KAMIL", cls: "XII IPA 4", univ: "UNIVERSITAS PATTIMURA", prodi: "PENDIDIKAN DOKTER", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "ambon" },
+            { name: "SALSABHILA ADELIA ALIKA FITRI", cls: "XII IPA 4", univ: "UNIVERSITAS UDAYANA", prodi: "MANAJEMEN", pathway: "SNBT", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "denpasar" },
+            { name: "AMIRA NABILA AZIZ", cls: "XII IPA 1", univ: "UNIVERSITAS TRUNOJOYO MADURA", prodi: "PENDIDIKAN DOKTER", pathway: "SELEKSI MANDIRI PTN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "madura" },
+            { name: "SIHA ERA FAZIRA", cls: "XII KEAGAMAAN", univ: "UIN SAYYID ALI RAHMATULLAH TULUNGAGUNG", prodi: "MANAJEMEN BISNIS SYARI'AH", pathway: "SPAN PTKIN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "tulungagung" },
+            { name: "KEYSA AL MAJIDA", cls: "XII KEAGAMAAN", univ: "UIN SUNAN KALIJAGA YOGYAKARTA", prodi: "ILMU AL-QUR'AN DAN TAFSIR", pathway: "SPAN PTKIN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bidang Lainnya", locId: "yogyakarta" },
+            { name: "M. MAHESWARA NAWAF AL FAWAZ PUTRA N.", cls: "XII BAHASA", univ: "UIN MAULANA MALIK IBRAHIM MALANG", prodi: "HUKUM TATA NEGARA (SIYASAH)", pathway: "UM-PTKIN", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "malang" },
+            { name: "RIFAT ABYAN RAHMAN", cls: "XII IPA 4", univ: "AKADEMI ANGKATAN UDARA (AAU)", prodi: "TARUNA AKADEMI ANGKATAN UDARA", pathway: "SELEKSI KEDINASAN AAU", cat: "PTN", isScholarship: false, isGolden: false, cluster: "Bidang Lainnya", locId: "yogyakarta" },
+            { name: "AISYAH KHAIRANIA EFFENDI", cls: "XII IPA 1", univ: "UNIVERSITAS BINA NUSANTARA (BINUS)", prodi: "DIGITAL PSYCHOLOGY", pathway: "SELEKSI MANDIRI PTS (BEASISWA TPKS)", cat: "PTS", isScholarship: true, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "jabodetabek" },
+            { name: "ANNADA TAZAYYANI ATILAH", cls: "XII IPA 1", univ: "TELKOM UNIVERSITY", prodi: "DIGITAL PUBLIC RELATIONS", pathway: "SELEKSI MANDIRI PTS", cat: "PTS", isScholarship: false, isGolden: false, cluster: "Bidang Lainnya", locId: "bandung" },
+            { name: "CHALILA MUKHBITA MEYSUN", cls: "XII IPS 3", univ: "UNIVERSITAS CIPUTRA SURABAYA", prodi: "INTERNATIONAL BUSINESS MANAGEMENT", pathway: "SELEKSI MANDIRI PTS", cat: "PTS", isScholarship: false, isGolden: false, cluster: "Bisnis, Hukum & Sosial Profesional", locId: "surabaya" },
+            { name: "RAMEYZA ALYA CHAYARA KUSUMA", cls: "XII IPA 4", univ: "UNIVERSITAS MUHAMMADIYAH MALANG", prodi: "PENDIDIKAN DOKTER", pathway: "SELEKSI MANDIRI PTS", cat: "PTS", isScholarship: false, isGolden: false, cluster: "Profesi Kesehatan", locId: "malang" }
+        ];
+
+        // 8 Klaster Keilmuan (Total 466 Alumni)
+        const careerClusters = [
+            { label: "Bisnis, Hukum & Sosial Profesional", count: 134, color: "#065F46", tag: "Enterprising & Social" },
+            { label: "Profesi Kesehatan", count: 90, color: "#0F766E", tag: "Investigative & Social" },
+            { label: "Teknik & Rekayasa", count: 90, color: "#D97706", tag: "Realistic & Investigative" },
+            { label: "Humaniora & Sosial", count: 40, color: "#059669", tag: "Social & Artistic" },
+            { label: "Teknologi & Digital", count: 38, color: "#F59E0B", tag: "Investigative & Conventional" },
+            { label: "Bidang Lainnya", count: 37, color: "#475569", tag: "Interdisipliner & Kedinasan" },
+            { label: "Bidang Sains", count: 24, color: "#0284C7", tag: "Investigative" },
+            { label: "Pendidikan", count: 13, color: "#7C3AED", tag: "Social" }
+        ];
+
+        // =========================================================================
+        // 2. LIVE CLOCK
+        // =========================================================================
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString('id-ID', { hour12: false });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // =========================================================================
+        // 3. RENDER SVG PETA DUNIA, PETA INDONESIA & KARTU WILAYAH
+        // =========================================================================
+        function renderAllGeoViews() {
+            renderWorldSvgNodes();
+            renderIndoSvgNodes();
+            renderRegionalCards();
+        }
+
+        function renderWorldSvgNodes() {
+            const container = document.getElementById('world-svg-nodes');
+            if (!container) return;
+
+            let svgHtml = '';
+
+            // 1. Hub Asal: Malang / Indonesia (454 Alumni PTDN)
+            const hubX = 772, hubY = 309;
+            svgHtml += `
+                <g class="map-node-group" onclick="switchGeoTab('indonesia')">
+                    <circle cx="${hubX}" cy="${hubY}" r="18" fill="#065F46" class="node-pulse"/>
+                    <circle cx="${hubX}" cy="${hubY}" r="15" fill="#065F46" stroke="#FFFFFF" stroke-width="2.5" class="node-core" filter="url(#dropShadow)"/>
+                    <text x="${hubX}" y="${hubY + 4}" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">${kpiState.domestic}</text>
+                    <g transform="translate(${hubX}, ${hubY + 26})">
+                        <rect x="-48" y="-9" width="96" height="16" rx="4" fill="#043927" opacity="0.92"/>
+                        <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700" font-family="Inter, sans-serif">Indonesia (${kpiState.domestic})</text>
+                    </g>
+                </g>
+            `;
+
+            // 2. 7 Titik Negara PTLN
+            const ptlnList = geoLocations.filter(l => l.type === 'PTLN');
+            ptlnList.forEach(loc => {
+                const r = loc.count >= 3 ? 14 : 11.5;
+                // Offset label agar Singapura & Malaysia tidak bertabrakan
+                let labelY = loc.worldY - r - 8;
+                let labelX = loc.worldX;
+                if (loc.id === 'singapura') { labelX += 34; labelY += 16; }
+                if (loc.id === 'malaysia') { labelX -= 32; labelY -= 2; }
+
+                svgHtml += `
+                    <g class="map-node-group" onclick="selectLocationById('${loc.id}')">
+                        <circle cx="${loc.worldX}" cy="${loc.worldY}" r="${r + 2}" fill="#D97706" class="node-pulse"/>
+                        <circle cx="${loc.worldX}" cy="${loc.worldY}" r="${r}" fill="#D97706" stroke="#FFFFFF" stroke-width="2" class="node-core" filter="url(#dropShadow)"/>
+                        <text x="${loc.worldX}" y="${loc.worldY + 3.5}" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">${loc.count}</text>
+                        <g transform="translate(${labelX}, ${labelY})">
+                            <rect x="-42" y="-9" width="84" height="15" rx="4" fill="#FFFFFF" stroke="#FCD34D" stroke-width="1"/>
+                            <text x="0" y="2" text-anchor="middle" fill="#78350F" font-size="8.5" font-weight="700" font-family="Inter, sans-serif">${loc.label} (${loc.count})</text>
+                        </g>
+                    </g>
+                `;
+            });
+
+            container.innerHTML = svgHtml;
+        }
+
+        function renderIndoSvgNodes() {
+            const container = document.getElementById('indo-svg-nodes');
+            if (!container) return;
+
+            const ptdnList = geoLocations.filter(l => l.type === 'PTDN');
+            let svgHtml = '';
+
+            ptdnList.forEach(loc => {
+                const r = loc.count >= 100 ? 17 : (loc.count >= 30 ? 14 : (loc.count >= 8 ? 11.5 : 9.5));
+                // Posisi label khusus agar kota-kota di Jawa Timur & Jawa Tengah terbaca bersih tanpa tumpang tindih
+                let dx = 0, dy = -r - 8;
+                if (loc.id === 'malang') { dx = 8; dy = r + 14; }
+                else if (loc.id === 'surabaya') { dx = -8; dy = -r - 9; }
+                else if (loc.id === 'madura') { dx = 36; dy = -6; }
+                else if (loc.id === 'jember') { dx = 38; dy = 4; }
+                else if (loc.id === 'tulungagung') { dx = -34; dy = r + 13; }
+                else if (loc.id === 'yogyakarta') { dx = -24; dy = r + 13; }
+                else if (loc.id === 'surakarta') { dx = 32; dy = -11; }
+                else if (loc.id === 'semarang') { dx = -12; dy = -r - 9; }
+                else if (loc.id === 'bandung') { dx = 4; dy = r + 13; }
+                else if (loc.id === 'jabodetabek') { dx = -24; dy = -r - 9; }
+                else if (loc.id === 'denpasar') { dx = 18; dy = r + 13; }
+
+                const badgeWidth = Math.max(66, loc.label.length * 5.3 + 22);
+
+                svgHtml += `
+                    <g class="map-node-group" onclick="selectLocationById('${loc.id}')">
+                        ${loc.count >= 14 ? `<circle cx="${loc.indoX}" cy="${loc.indoY}" r="${r + 2}" fill="#065F46" class="node-pulse"/>` : ''}
+                        <circle cx="${loc.indoX}" cy="${loc.indoY}" r="${r}" fill="#065F46" stroke="#FFFFFF" stroke-width="2" class="node-core"/>
+                        <text x="${loc.indoX}" y="${loc.indoY + 3.5}" text-anchor="middle" fill="#FFFFFF" font-size="${loc.count >= 100 ? '10.5' : '9'}" font-weight="800" font-family="Plus Jakarta Sans, sans-serif">${loc.count}</text>
+                        <g transform="translate(${loc.indoX + dx}, ${loc.indoY + dy})">
+                            <rect x="${-badgeWidth / 2}" y="-8" width="${badgeWidth}" height="14" rx="3.5" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="1"/>
+                            <text x="0" y="2" text-anchor="middle" fill="#064E3B" font-size="8.2" font-weight="700" font-family="Inter, sans-serif">${loc.label} (${loc.count})</text>
+                        </g>
+                    </g>
+                `;
+            });
+
+            container.innerHTML = svgHtml;
+        }
+
+        function renderRegionalCards() {
+            const ptlnGrid = document.getElementById('cards-ptln-grid');
+            const ptdnGrid = document.getElementById('cards-ptdn-grid');
+
+            ptlnGrid.innerHTML = geoLocations.filter(l => l.type === 'PTLN').map(loc => `
+                <button onclick="selectLocationById('${loc.id}')" class="text-left p-3.5 rounded-xl bg-white border border-amber-200/90 hover:border-gold-600 shadow-2xs transition cursor-pointer group">
+                    <div class="flex items-center justify-between">
+                        <span class="font-display font-bold text-sm text-slate-900 group-hover:text-gold-600">${loc.label}</span>
+                        <span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 font-extrabold text-xs">${loc.count} Siswa</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 mt-1 line-clamp-1">${loc.campuses.map(c => c.name).join(', ')}</div>
+                </button>
+            `).join('');
+
+            ptdnGrid.innerHTML = geoLocations.filter(l => l.type === 'PTDN').map(loc => `
+                <button onclick="selectLocationById('${loc.id}')" class="text-left p-3.5 rounded-xl bg-white border border-slate-200/90 hover:border-emerald-700 shadow-2xs transition cursor-pointer group">
+                    <div class="flex items-center justify-between">
+                        <span class="font-display font-bold text-sm text-slate-900 group-hover:text-emerald-800">${loc.label}</span>
+                        <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-900 font-extrabold text-xs">${loc.count} Siswa</span>
+                    </div>
+                    <div class="text-[11px] text-slate-500 mt-1 line-clamp-1">${loc.campuses.map(c => c.name).join(', ')}</div>
+                </button>
+            `).join('');
+        }
+
+        function switchGeoTab(tabName) {
+            document.querySelectorAll('.geo-tab-btn').forEach(btn => {
+                btn.classList.remove('bg-emerald-800', 'text-white', 'shadow-xs');
+                btn.classList.add('text-slate-600');
+            });
+            const activeBtn = document.getElementById(`tab-geo-${tabName}`);
+            activeBtn.classList.remove('text-slate-600');
+            activeBtn.classList.add('bg-emerald-800', 'text-white', 'shadow-xs');
+
+            document.getElementById('view-geo-world').classList.add('hidden');
+            document.getElementById('view-geo-indonesia').classList.add('hidden');
+            document.getElementById('view-geo-cards').classList.add('hidden');
+
+            const activeView = document.getElementById(`view-geo-${tabName}`);
+            activeView.classList.remove('hidden');
+            if (tabName !== 'cards') activeView.classList.add('flex');
+        }
+
+        function renderDefaultDetailPanel() {
+            document.getElementById('detail-region-badge').textContent = "Ringkasan Global";
+            document.getElementById('detail-count-badge').textContent = `${kpiState.accepted} Alumni`;
+            document.getElementById('detail-title').textContent = "Sorotan Sebaran Studi Lanjut";
+            document.getElementById('detail-subtitle').textContent = "Klik titik pada peta SVG atau pilih negara/kota di atas:";
+
+            document.getElementById('detail-content-list').innerHTML = `
+                <div class="p-3.5 rounded-xl bg-amber-50/90 border border-amber-200/80">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-amber-900">Kampus Luar Negeri (7 Negara)</span>
+                        <span class="text-xs font-extrabold text-amber-900 bg-amber-200/60 px-2 py-0.5 rounded-md">${kpiState.abroad} Siswa</span>
+                    </div>
+                    <p class="text-[11px] text-amber-900/85 mt-1.5 leading-relaxed">
+                        Australia (4), Mesir (3), Kanada (1), Singapura (1), Malaysia (1), Korea Selatan (1), dan Maroko (1).
+                    </p>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-2xs">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-emerald-950">Top 5 Kampus Tujuan Terbanyak</span>
+                        <span class="text-[11px] font-semibold text-emerald-800">42 Kampus Nasional</span>
+                    </div>
+                    <div class="space-y-1.5 text-xs">
+                        <div class="flex justify-between items-center py-1 px-2 rounded bg-slate-50">
+                            <span class="font-medium text-slate-700">1. Universitas Brawijaya (UB)</span>
+                            <span class="font-bold text-emerald-800">150</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 px-2 rounded bg-slate-50">
+                            <span class="font-medium text-slate-700">2. Universitas Negeri Malang (UM)</span>
+                            <span class="font-bold text-emerald-800">48</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 px-2 rounded bg-slate-50">
+                            <span class="font-medium text-slate-700">3. Institut Teknologi Sepuluh Nopember</span>
+                            <span class="font-bold text-emerald-800">41</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 px-2 rounded bg-slate-50">
+                            <span class="font-medium text-slate-700">4. Universitas Airlangga (UNAIR)</span>
+                            <span class="font-bold text-emerald-800">36</span>
+                        </div>
+                        <div class="flex justify-between items-center py-1 px-2 rounded bg-slate-50">
+                            <span class="font-medium text-slate-700">5. Universitas Gadjah Mada (UGM)</span>
+                            <span class="font-bold text-emerald-800">31</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectLocationById(locId) {
+            const loc = geoLocations.find(l => l.id === locId);
+            if (!loc) return;
+
+            const badgeEl = document.getElementById('detail-region-badge');
+            badgeEl.textContent = loc.type === 'PTLN' ? 'Kampus Luar Negeri (PTLN)' : 'Kampus Dalam Negeri (PTDN)';
+            badgeEl.className = loc.type === 'PTLN'
+                ? 'px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900'
+                : 'px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800';
+
+            document.getElementById('detail-count-badge').textContent = `${loc.count} Alumni`;
+            document.getElementById('detail-title').textContent = loc.name;
+            document.getElementById('detail-subtitle').textContent = `Rincian Perguruan Tinggi & Daftar Alumni Terdata:`;
+
+            const matchedStudents = alumniRecords.filter(s => s.locId === loc.id);
+
+            const campusesHtml = loc.campuses.map(c => `
+                <div class="flex items-center justify-between py-1.5 px-2.5 rounded-lg bg-white border border-slate-200/80 text-xs">
+                    <span class="font-semibold text-slate-800">${c.name}</span>
+                    <span class="font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-900 shrink-0 ml-2">${c.count}</span>
+                </div>
+            `).join('');
+
+            const studentsHtml = matchedStudents.length > 0 ? matchedStudents.map(st => `
+                <div class="p-3 rounded-xl bg-white border border-slate-200/80 shadow-2xs hover:border-emerald-400 transition">
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="font-bold text-slate-900 text-xs">${st.name}</div>
+                        <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 shrink-0">${st.cls}</span>
+                    </div>
+                    <div class="text-[11px] font-bold text-emerald-800 mt-1">${st.univ}</div>
+                    <div class="text-[11px] text-slate-600 mt-0.5">${st.prodi}</div>
+                    <div class="mt-2">
+                        <span class="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-md ${st.isScholarship || st.isGolden ? 'bg-amber-100 text-amber-900' : 'bg-emerald-50 text-emerald-800'}">
+                            ${st.pathway}
+                        </span>
+                    </div>
+                </div>
+            `).join('') : '';
+
+            document.getElementById('detail-content-list').innerHTML = `
+                <div class="space-y-1.5">
+                    <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Sebaran Kampus (${loc.campuses.length})</div>
+                    ${campusesHtml}
+                </div>
+                <div class="space-y-2 pt-2">
+                    <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Daftar Nama Alumni di Wilayah Ini</div>
+                    ${studentsHtml}
+                </div>
+            `;
+        }
+
+        // =========================================================================
+        // 4. RENDER GRAFIK BATANG HORIZONTAL KLASTER KEILMUAN (PURE HTML/CSS)
+        // =========================================================================
+        function renderClusterBars() {
+            const container = document.getElementById('cluster-bars-container');
+            const maxVal = Math.max(...careerClusters.map(c => c.count));
+
+            container.innerHTML = careerClusters.map(c => {
+                const widthPct = Math.round((c.count / maxVal) * 100);
+                const sharePct = ((c.count / kpiState.accepted) * 100).toFixed(1);
+
+                return `
+                    <div onclick="filterByClusterClick('${c.label}')" class="group cursor-pointer">
+                        <div class="flex items-center justify-between text-xs mb-1">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-slate-800 group-hover:text-emerald-800 transition">${c.label}</span>
+                                <span class="hidden sm:inline-block text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-500">${c.tag}</span>
+                            </div>
+                            <div class="font-display font-bold text-slate-900">
+                                ${c.count} <span class="text-slate-400 font-normal text-[11px]">(${sharePct}%)</span>
+                            </div>
+                        </div>
+                        <div class="w-full h-3.5 bg-slate-100 rounded-full overflow-hidden p-0.5">
+                            <div class="h-full rounded-full transition-all duration-700 group-hover:brightness-110" 
+                                 style="width: ${widthPct}%; background-color: ${c.color};"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterByClusterClick(clusterLabel) {
+            document.getElementById('filter-cluster').value = clusterLabel;
+            applyFilters();
+            document.getElementById('direktori-alumni').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // =========================================================================
+        // 5. DIREKTORI PENCARIAN & FILTER TABEL ALUMNI
+        // =========================================================================
+        let filteredRecords = [...alumniRecords];
+        let currentPage = 1;
+        const rowsPerPage = 12;
+
+        function applyFilters() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const clsFilter = document.getElementById('filter-class').value;
+            const catFilter = document.getElementById('filter-category').value;
+            const pathFilter = document.getElementById('filter-pathway').value;
+            const clusterFilter = document.getElementById('filter-cluster').value;
+
+            filteredRecords = alumniRecords.filter(item => {
+                const matchSearch = !query ||
+                    item.name.toLowerCase().includes(query) ||
+                    item.univ.toLowerCase().includes(query) ||
+                    item.prodi.toLowerCase().includes(query);
+
+                const matchClass = clsFilter === 'ALL' || item.cls === clsFilter;
+
+                let matchCat = true;
+                if (catFilter === 'PTLN') matchCat = item.cat === 'PTLN';
+                else if (catFilter === 'BEASISWA') matchCat = item.isScholarship === true;
+                else if (catFilter === 'GOLDEN') matchCat = item.isGolden === true;
+                else if (catFilter === 'PTN') matchCat = item.cat === 'PTN';
+                else if (catFilter === 'PTS') matchCat = item.cat === 'PTS';
+
+                let matchPath = true;
+                const p = item.pathway.toUpperCase();
+                if (pathFilter === 'SNBT') matchPath = p.includes('SNBT');
+                else if (pathFilter === 'MANDIRI_PTN') matchPath = p.includes('SELEKSI MANDIRI PTN');
+                else if (pathFilter === 'SNBP') matchPath = p.includes('SNBP');
+                else if (pathFilter === 'BEASISWA') matchPath = item.isScholarship === true;
+                else if (pathFilter === 'GOLDEN') matchPath = item.isGolden === true;
+                else if (pathFilter === 'MANDIRI_PTS') matchPath = p.includes('SELEKSI MANDIRI PTS');
+                else if (pathFilter === 'IUP') matchPath = p.includes('IUP');
+                else if (pathFilter === 'SPAN_PTKIN') matchPath = p.includes('SPAN PTKIN');
+                else if (pathFilter === 'UM_PTKIN') matchPath = p.includes('UM-PTKIN');
+                else if (pathFilter === 'MANDIRI_PTLN') matchPath = p.includes('SELEKSI MANDIRI PTLN');
+                else if (pathFilter === 'KEDINASAN') matchPath = p.includes('KEDINASAN');
+
+                const matchCluster = clusterFilter === 'ALL' || item.cluster === clusterFilter;
+
+                return matchSearch && matchClass && matchCat && matchPath && matchCluster;
+            });
+
+            currentPage = 1;
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('alumni-table-body');
+            const totalItems = filteredRecords.length;
+            const totalPages = Math.max(1, Math.ceil(totalItems / rowsPerPage));
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            const startIdx = (currentPage - 1) * rowsPerPage;
+            const pageItems = filteredRecords.slice(startIdx, startIdx + rowsPerPage);
+
+            document.getElementById('showing-count').textContent = totalItems;
+            document.getElementById('pagination-info').textContent = `Halaman ${currentPage} dari ${totalPages} (${totalItems} siswa terindeks)`;
+            document.getElementById('prev-page').disabled = currentPage <= 1;
+            document.getElementById('next-page').disabled = currentPage >= totalPages;
+
+            if (pageItems.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="py-10 text-center text-slate-500">
+                            Tidak ditemukan data alumni yang sesuai dengan kombinasi filter saat ini.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = pageItems.map(item => {
+                const badgeClass = item.cat === 'PTLN'
+                    ? 'bg-amber-100 text-amber-900 border border-amber-300'
+                    : (item.isScholarship || item.isGolden
+                        ? 'bg-yellow-50 text-yellow-900 border border-yellow-300'
+                        : 'bg-emerald-50 text-emerald-900 border border-emerald-200');
+
+                return `
+                    <tr class="hover:bg-slate-50/90 transition">
+                        <td class="py-3 px-4 sm:px-6 font-bold text-slate-900">
+                            ${item.cat === 'PTLN' ? '<span class="inline-block w-2 h-2 rounded-full bg-gold-600 mr-1.5" title="Kampus Luar Negeri"></span>' : ''}
+                            ${item.name}
+                        </td>
+                        <td class="py-3 px-3">
+                            <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-semibold text-[11px]">${item.cls}</span>
+                        </td>
+                        <td class="py-3 px-4 font-semibold text-emerald-950">${item.univ}</td>
+                        <td class="py-3 px-4 text-slate-700">${item.prodi}</td>
+                        <td class="py-3 px-4 text-xs text-slate-600 font-medium">${item.cluster}</td>
+                        <td class="py-3 px-4 sm:px-6">
+                            <span class="inline-block px-2.5 py-1 rounded-lg text-[11px] font-semibold ${badgeClass}">
+                                ${item.pathway}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function changePage(delta) {
+            currentPage += delta;
+            renderTable();
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('filter-class').value = 'ALL';
+            document.getElementById('filter-category').value = 'ALL';
+            document.getElementById('filter-pathway').value = 'ALL';
+            document.getElementById('filter-cluster').value = 'ALL';
+            applyFilters();
+        }
+
+        document.getElementById('search-input').addEventListener('input', applyFilters);
+        document.getElementById('filter-class').addEventListener('change', applyFilters);
+        document.getElementById('filter-category').addEventListener('change', applyFilters);
+        document.getElementById('filter-pathway').addEventListener('change', applyFilters);
+        document.getElementById('filter-cluster').addEventListener('change', applyFilters);
+
+        // =========================================================================
+        // 6. MODAL UPDATE REAL-TIME (SIMULASI TIM BK)
+        // =========================================================================
+        function openUpdateModal() {
+            const modal = document.getElementById('update-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeUpdateModal() {
+            const modal = document.getElementById('update-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function handleRealtimeSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('input-name').value.toUpperCase().trim();
+            const cls = document.getElementById('input-class').value;
+            const locId = document.getElementById('input-location').value;
+            const univ = document.getElementById('input-univ').value.toUpperCase().trim();
+            const prodi = document.getElementById('input-prodi').value.toUpperCase().trim();
+            const cluster = document.getElementById('input-cluster').value;
+            const pathway = document.getElementById('input-pathway').value.toUpperCase().trim();
+            const fromPending = document.getElementById('input-from-pending').checked;
+
+            const isAbroad = ['australia', 'singapura', 'mesir', 'kanada', 'maroko', 'korsel', 'malaysia'].includes(locId);
+            const isSchol = pathway.includes('BEASISWA') || pathway.includes('LPDP') || pathway.includes('GARUDA');
+            const isGold = pathway.includes('GOLDEN') || pathway.includes('MITRA');
+
+            alumniRecords.unshift({
+                name, cls, univ, prodi, pathway,
+                cat: isAbroad ? 'PTLN' : (pathway.includes('PTS') ? 'PTS' : 'PTN'),
+                isScholarship: isSchol,
+                isGolden: isGold,
+                cluster,
+                locId
+            });
+
+            kpiState.accepted += 1;
+            if (isAbroad) kpiState.abroad += 1;
+            else kpiState.domestic += 1;
+            if (isSchol || isGold) kpiState.scholarships += 1;
+
+            if (fromPending && kpiState.pending > 0) {
+                kpiState.pending -= 1;
+            } else {
+                kpiState.totalStudents += 1;
+            }
+
+            const targetLoc = geoLocations.find(l => l.id === locId);
+            if (targetLoc) {
+                targetLoc.count += 1;
+                const existingCampus = targetLoc.campuses.find(c => c.name.toUpperCase().includes(univ));
+                if (existingCampus) existingCampus.count += 1;
+                else targetLoc.campuses.push({ name: univ, count: 1 });
+            }
+
+            const targetCluster = careerClusters.find(c => c.label === cluster);
+            if (targetCluster) {
+                targetCluster.count += 1;
+            }
+
+            // Refresh semua komponen secara real-time
+            refreshKPIDisplay();
+            renderAllGeoViews();
+            renderClusterBars();
+            selectLocationById(locId);
+            applyFilters();
+            closeUpdateModal();
+            document.getElementById('realtime-form').reset();
+
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = `Data ${name} (${univ}) berhasil ditambahkan secara real-time!`;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 4000);
+        }
+
+        function refreshKPIDisplay() {
+            document.getElementById('kpi-accepted').textContent = kpiState.accepted;
+            document.getElementById('kpi-total').textContent = kpiState.totalStudents;
+            const rate = ((kpiState.accepted / kpiState.totalStudents) * 100).toFixed(2).replace('.', ',');
+            document.getElementById('kpi-rate').textContent = `${rate}% Keterserapan`;
+            document.getElementById('kpi-abroad').textContent = kpiState.abroad;
+            document.getElementById('kpi-domestic').textContent = kpiState.domestic;
+            document.getElementById('kpi-scholarship').textContent = kpiState.scholarships;
+            document.getElementById('kpi-other-total').textContent = kpiState.gapYear + kpiState.pending;
+            document.getElementById('kpi-gap-badge').textContent = `${kpiState.gapYear} Gap Year`;
+            document.getElementById('kpi-pending-badge').textContent = `${kpiState.pending} Menunggu`;
+        }
+
+        // =========================================================================
+        // 7. INISIALISASI SAAT HALAMAN DIMUAT
+        // =========================================================================
+        window.onload = function() {
+            renderAllGeoViews();
+            renderDefaultDetailPanel();
+            renderClusterBars();
+            applyFilters();
+        };
+    </script>
+</body>
+</html>
